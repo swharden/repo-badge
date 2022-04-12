@@ -3,19 +3,31 @@
 
 <head>
     <title>GitHub Repo Badge Demo</title>
-    <script src="badge.js" defer></script>
+    <style>
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
     <div style="margin: 3em; text-align: center;">
-        <h1>GitHub Repository Badge (Demo)</h1>
+        <h1>GitHub Repo Badge</h1>
+        <hr style="margin: 2em; opacity: 0;">
+
+        <!-- GitHub Repo Badge -->
+        <a href="http://github.com/swharden/scottplot" id="github-stats-badge">GitHub</a>
+        <script src="badge.js" defer></script>
+
         <div style="margin: 3em;">
-            <a href="https://github.com/swharden/github-repo-badges">Get yours now!</a>
+            <a href="https://github.com/swharden/github-repo-badges">GitHub</a>
         </div>
 
-        <!-- GitHub Repo Badge HTML -->
-        <div style="min-width: 160px;" id="github-stats-badge">
-        </div>
     </div>
 
 </body>
