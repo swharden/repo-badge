@@ -7,3 +7,5 @@ This project contains HTML and Vanilla JavaScript for creating badges you can in
 ![](docs/screenshot.jpg)
 
 </div>
+
+* Live Demo: https://github.com/swharden/repo-badge
