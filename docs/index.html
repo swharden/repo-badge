@@ -3,34 +3,6 @@
 
 <head>
     <title>GitHub Repo Badge Demo</title>
-    <style>
-        #github-stats-badge {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            color: #24292f;
-            background-color: #ccd1d5;
-            border: 1px solid rgba(27, 31, 36, .15);
-            background-image: linear-gradient(180deg, #f6f8fa, #ebf0f4 90%);
-            display: inline-block;
-            height: 34px;
-            padding: 5px 7px;
-            font-size: 12px;
-            line-height: 16px;
-            text-align: left;
-            border-radius: .25em;
-            font-weight: 500;
-        }
-
-        #github-stats-badge a {
-            color: black;
-            text-decoration: none;
-            opacity: 0;
-            transition: opacity .5s ease-in-out;
-        }
-
-        #github-stats-badge a:hover {
-            color: rgb(100, 100, 200);
-        }
-    </style>
 </head>
 
 <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
@@ -87,13 +59,25 @@
 
             function update_github_stats_badge(userName, repoName) {
 
+                // add stylesheet file dynamically
+                let link = document.createElement("link");
+                link.href = "style.css";
+                link.type = "text/css";
+                link.rel = "stylesheet";
+                link.media = "screen,print";
+                document.getElementsByTagName("head")[0].appendChild(link);
+
+                // fetch data
                 const opacity = .9;
-                const isDevEnvironment = window.location.href.includes("localhost:") || window.location.href.includes("127.0.0.1:");
+                const isDevEnvironment = window.location.href.includes("localhost:") ||
+                    window.location.href.includes("127.0.0.1:");
                 const repoUrl = isDevEnvironment ? 'repo.json' : `https://api.github.com/repos/${userName}/${repoName}`;
-                const releaseUrl = isDevEnvironment ? 'release.json' : `https://api.github.com/repos/${userName}/${repoName}/releases/latest`;
+                const releaseUrl = isDevEnvironment ? 'release.json' :
+                    `https://api.github.com/repos/${userName}/${repoName}/releases/latest`;
 
                 setTimeout(() => {
-                    document.getElementById('github-stats-badge--repo').getElementsByTagName("span")[0].innerText = userName + '/' + repoName;
+                    document.getElementById('github-stats-badge--repo').getElementsByTagName("span")[0].innerText = userName + '/' +
+                        repoName;
                     document.getElementById('github-stats-badge--repo').style.opacity = opacity;
                 }, 50);
 
@@ -101,9 +85,11 @@
                     .then(response => response.ok ? response.json() : null)
                     .then(data => {
                         if (data) {
-                            document.getElementById('github-stats-badge--stars').getElementsByTagName("span")[0].innerText = data.stargazers_count.toLocaleString();
+                            document.getElementById('github-stats-badge--stars').getElementsByTagName("span")[0].innerText =
+                                data.stargazers_count.toLocaleString();
                             document.getElementById('github-stats-badge--stars').style.opacity = opacity;
-                            document.getElementById('github-stats-badge--forks').getElementsByTagName("span")[0].innerText = data.forks.toLocaleString();
+                            document.getElementById('github-stats-badge--forks').getElementsByTagName("span")[0].innerText =
+                                data.forks.toLocaleString();
                             document.getElementById('github-stats-badge--forks').style.opacity = opacity;
                         }
                     });
