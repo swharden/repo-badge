@@ -132,6 +132,7 @@ function githubStatusBadge_init() {
 function githubStatusBadge_updateData() {
 
     [userName, repoName] = githubStatusBadge_getUserAndRepoNames();
+    const repoLinkUrl = `https://github.com/${userName}/${repoName}`;
 
     const opacityAfterLoad = .9;
     const isDevEnvironment = window.location.href.includes("localhost:") ||
@@ -141,9 +142,10 @@ function githubStatusBadge_updateData() {
 
     // repository name
     setTimeout(() => {
-        document.getElementById('github-stats-badge--repo').getElementsByTagName("span")[0].innerText = userName + '/' +
-            repoName;
-        document.getElementById('github-stats-badge--repo').style.opacity = opacityAfterLoad;
+        const repo = document.getElementById('github-stats-badge--repo');
+        repo.getElementsByTagName("span")[0].innerText = userName + '/' + repoName;
+        repo.style.opacity = opacityAfterLoad;
+        repo.href = repoLinkUrl;
     }, 50);
 
     // stars and forks
@@ -151,12 +153,15 @@ function githubStatusBadge_updateData() {
         .then(response => { return response.ok ? response.json() : { "stargazers_count": "error", "forks": "error" }; })
         .then(data => {
             if (data) {
-                document.getElementById('github-stats-badge--stars').getElementsByTagName("span")[0].innerText =
-                    data.stargazers_count.toLocaleString();
-                document.getElementById('github-stats-badge--stars').style.opacity = opacityAfterLoad;
-                document.getElementById('github-stats-badge--forks').getElementsByTagName("span")[0].innerText =
-                    data.forks.toLocaleString();
-                document.getElementById('github-stats-badge--forks').style.opacity = opacityAfterLoad;
+                const stars = document.getElementById('github-stats-badge--stars');
+                stars.getElementsByTagName("span")[0].innerText = data.stargazers_count.toLocaleString();
+                stars.style.opacity = opacityAfterLoad;
+                stars.href = repoLinkUrl + "/stargazers";
+
+                const forks = document.getElementById('github-stats-badge--forks');
+                forks.getElementsByTagName("span")[0].innerText = data.forks.toLocaleString();
+                forks.style.opacity = opacityAfterLoad;
+                forks.href = repoLinkUrl + "/network/members";
             }
         });
 
@@ -164,8 +169,10 @@ function githubStatusBadge_updateData() {
     fetch(releaseUrl)
         .then(response => { return response.ok ? response.json() : { "tag_name": "none" }; })
         .then(data => {
-            document.getElementById('github-stats-badge--tag').getElementsByTagName("span")[0].innerText = data.tag_name;
-            document.getElementById('github-stats-badge--tag').style.opacity = opacityAfterLoad;
+            const tag = document.getElementById('github-stats-badge--tag');
+            tag.getElementsByTagName("span")[0].innerText = data.tag_name;
+            tag.style.opacity = opacityAfterLoad;
+            tag.href = repoLinkUrl + "/releases";
         });
 }
 
