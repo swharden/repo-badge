@@ -31,7 +31,6 @@ const githubStatusBadge_HeadCss = `
         border: 1px solid rgba(27, 31, 36, .15);
         background-image: linear-gradient(180deg, #f6f8fa, #ebf0f4 90%);
         display: inline-block;
-        height: 34px;
         padding: 5px 7px;
         font-size: 12px;
         line-height: 16px;
