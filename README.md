@@ -1,18 +1,13 @@
 # GitHub Repo Badges
 
-This project contains HTML and Vanilla JavaScript for creating badges you can include on your website to display project statistics for any public GitHub repository
+This project uses HTML and Vanilla JavaScript to dynamically create a badge you can include on your website to display project statistics for any public GitHub repository.
 
 <div align="center">
 
-![](docs/screenshot.jpg)
+### Live Demo
+
+<a href="https://swharden.github.io/repo-badge/"><img src="docs/screenshot.jpg"></a>
+
+https://swharden.github.io/repo-badge/
 
 </div>
-
-### Live Demo
-* https://swharden.github.io/repo-badge/
-
-### Install
-
-Presently you have to view source then copy-and-paste CSS, HTML, and JS.
-
-I'll try to streamline this using smarter JS to dynamically insert CSS and build HTML.
