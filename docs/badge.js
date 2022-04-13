@@ -60,7 +60,8 @@ const githubStatusBadge_HeadCss = `
 /* extract username and repo name from the original URL of the original href */
 function githubStatusBadge_getUserAndRepoNames() {
     const badge = document.getElementById("github-stats-badge");
-    const parts = String(badge.href).split('/');
+    const url = badge.href.endsWith('/') ? badge.href.slice(0, -1) : badge.href;
+    const parts = url.split('/');
     const repoName = parts[parts.length - 1];
     const userName = parts[parts.length - 2];
     return [userName, repoName];
@@ -123,7 +124,7 @@ function githubStatusBadge_init() {
 
     // populate the rows with icon/text pairs
     githubStatusBadge_addIconAndText(row1, githubStatusBadge_githubPath, "username/reponame", "github-stats-badge--repo");
-    githubStatusBadge_addIconAndText(row2, githubStatusBadge_tagPath, "v1.2.34", "github-stats-badge--tag");
+    githubStatusBadge_addIconAndText(row2, githubStatusBadge_tagPath, "1.2.34", "github-stats-badge--tag");
     githubStatusBadge_addIconAndText(row2, githubStatusBadge_starPath, "6.9k", "github-stats-badge--stars");
     githubStatusBadge_addIconAndText(row2, githubStatusBadge_forkPath, "420", "github-stats-badge--forks");
 }
@@ -147,7 +148,7 @@ function githubStatusBadge_updateData() {
 
     // stars and forks
     fetch(repoUrl)
-        .then(response => response.ok ? response.json() : null)
+        .then(response => { return response.ok ? response.json() : { "stargazers_count": "error", "forks": "error" }; })
         .then(data => {
             if (data) {
                 document.getElementById('github-stats-badge--stars').getElementsByTagName("span")[0].innerText =
@@ -161,12 +162,10 @@ function githubStatusBadge_updateData() {
 
     // latest release tag
     fetch(releaseUrl)
-        .then(response => response.ok ? response.json() : null)
+        .then(response => { return response.ok ? response.json() : { "tag_name": "none" }; })
         .then(data => {
-            if (data) {
-                document.getElementById('github-stats-badge--tag').getElementsByTagName("span")[0].innerText = data.tag_name;
-                document.getElementById('github-stats-badge--tag').style.opacity = opacityAfterLoad;
-            }
+            document.getElementById('github-stats-badge--tag').getElementsByTagName("span")[0].innerText = data.tag_name;
+            document.getElementById('github-stats-badge--tag').style.opacity = opacityAfterLoad;
         });
 }
 
