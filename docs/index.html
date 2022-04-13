@@ -12,22 +12,48 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .code-block {
+            margin: auto;
+            margin-top: 1em;
+            font-family: monospace;
+            background-color: #f1f4f7;
+            padding: 1em;
+            line-height: 150%;
+            border: 1px solid rgba(27, 31, 36, .15);
+            border-radius: .5em;
+            width: fit-content;
+        }
     </style>
 </head>
 
 <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-    <div style="margin: 3em; text-align: center;">
+
+    <div style="margin-top: 1em; text-align: center;">
         <h1>GitHub Repo Badge</h1>
-        <hr style="margin: 2em; opacity: 0;">
-
-        <!-- GitHub Repo Badge -->
-        <a href="http://github.com/swharden/scottplot" id="github-stats-badge">GitHub</a>
+        <a href="http://github.com/swharden/repo-badge" id="github-stats-badge">GitHub</a>
         <script src="badge.js" defer></script>
+    </div>
 
-        <div style="margin: 3em;">
-            <a href="https://github.com/swharden/github-repo-badges">GitHub</a>
+    <div style="text-align: center;">
+        <h3 style="margin-top: 2em; margin-bottom: 0px; margin-top: 5em;">Create Your Own!</h3>
+
+        <div class="code-block">
+            &lt;a href=&quot;http://github.com/swharden/repo-badge&quot;
+            id=&quot;github-stats-badge&quot;&gt;GitHub&lt;/a&gt;
+            <br>
+            &lt;script src=&quot;https://swharden.github.io/repo-badge/badge.js&quot; defer&gt;&lt;/script&gt;
         </div>
 
+        <ul style="display: inline-block; text-align: left; list-style-type: none; line-height: 2em;">
+            <li><b>Step 1:</b> Paste this anywhere in your page</li>
+            <li><b>Step 2:</b> Edit the href to link to your project</li>
+            <li><b>Step 3:</b> You were expecting a step 3?</li>
+        </ul>
+    </div>
+
+    <div style="margin: 5em; text-align: center;">
+        Like it? <a href="https://github.com/swharden/repo-badge">Give us a star!</a> 🌟
     </div>
 
 </body>
