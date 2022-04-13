@@ -2,7 +2,25 @@
 <html lang="en">
 
 <head>
-    <title>GitHub Repo Badge Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GitHub Repo Badge</title>
+    <meta name="description" content="HTML code to dynamically display stats for any GitHub repository">
+
+    <meta property="og:url" content="https://swharden.github.io/repo-badge/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GitHub Repo Badge Demo">
+    <meta property="og:description" content="HTML code to dynamically display stats for any GitHub repository">
+    <meta property="og:image" content="banner.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="swharden.github.io">
+    <meta property="twitter:url" content="https://swharden.github.io/repo-badge/">
+    <meta name="twitter:title" content="GitHub Repo Badge Demo">
+    <meta name="twitter:description" content="HTML code to dynamically display stats for any GitHub repository">
+    <meta name="twitter:image" content="banner.png">
+
     <style>
         a {
             text-decoration: none;
@@ -31,30 +49,39 @@
 
     <div style="margin-top: 1em; text-align: center;">
         <h1>GitHub Repo Badge</h1>
+
+        <h3 style="margin-bottom: .5em; margin-top: 3em;">Live Demo</h3>
         <a href="http://github.com/swharden/repo-badge" id="github-stats-badge">GitHub</a>
-        <script src="badge1.js" defer></script>
+        <script src="badge.js" defer></script>
     </div>
 
     <div style="text-align: center;">
-        <h3 style="margin-top: 2em; margin-bottom: 0px; margin-top: 5em;">Create Your Own!</h3>
+        <h3 style="margin-bottom: 0px; margin-top: 3em;">Create Your Own!</h3>
 
         <div class="code-block">
             &lt;a href=&quot;http://github.com/swharden/repo-badge&quot;
             id=&quot;github-stats-badge&quot;&gt;GitHub&lt;/a&gt;
             <br>
-            &lt;script src=&quot;https://swharden.github.io/repo-badge/badge1.js&quot; defer&gt;&lt;/script&gt;
+            &lt;script src=&quot;https://swharden.github.io/repo-badge/badge.js&quot; defer&gt;&lt;/script&gt;
         </div>
 
         <ul style="display: inline-block; text-align: left; list-style-type: none; line-height: 2em;">
             <li><b>Step 1:</b> Paste this anywhere in your page</li>
-            <li><b>Step 2:</b> Edit the href to link to your project</li>
+            <li><b>Step 2:</b> Edit the href to point to your project</li>
             <li><b>Step 3:</b> You were expecting a step 3?</li>
         </ul>
+
+        <div>
+            Like it? <a href="https://github.com/swharden/repo-badge">Give us a star!</a> 🌟
+        </div>
     </div>
 
-    <div style="margin: 5em; text-align: center;">
-        Like it? <a href="https://github.com/swharden/repo-badge">Give us a star!</a> 🌟
-    </div>
+    <footer style="margin: 5em; text-align: center; line-height: 3em;">
+        <a href="https://swharden.com/about" style="color: black; font-size: .8em;">
+            Made with <img src="awesome.png" width="16" height="16" style="vertical-align: middle;" />
+            by Scott Harden
+        </a>
+    </footer>
 
 </body>
 
