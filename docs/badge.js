@@ -199,5 +199,12 @@ function githubStatusBadge_updateData() {
         });
 }
 
-githubStatusBadge_init();
-githubStatusBadge_updateData();
+if (typeof process === 'object') {
+    // we are running in node, probably due to the test system
+    console.log("exporting functions testing...");
+    module.exports = githubStatusBadge_formatNumber;
+} else {
+    // we are in a browser window
+    githubStatusBadge_init();
+    githubStatusBadge_updateData();
+}
