@@ -2,11 +2,12 @@ name: CI
 on: push
 jobs:
   build:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: 🛒 Checkout
         uses: actions/checkout@v2
       - name: 📦 Install modules
-        run: yarn
+        run: yarn --cwd docs
       - name: 🧪 Run tests
-        run: yarn test
+        run: yarn --cwd docs test
