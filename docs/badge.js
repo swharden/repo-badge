@@ -66,17 +66,27 @@ function githubStatusBadge_getUserAndRepoNames() {
     return [userName, repoName];
 }
 
-function githubStatusBadge_formatNumber(value) {
-    const badge = document.getElementById("github-stats-badge");
+function githubStatusBadge_formatNumber(value, showExactValues = false) {
 
-    if (badge.hasAttribute("data-exact"))
-        return value.toLocaleString();
+    if (showExactValues)
+        return value;
 
-    if (value < 1000)
-        return value.toLocaleString();
+    const thousand = value / 1000.0;
 
-    const thousand = Math.round(value / 100) / 10;
-    return thousand.toLocaleString() + "k";
+    if (value < 1000) {
+        return value.toFixed(0);
+    }
+
+    if (Math.round(thousand) < 100) {
+        return thousand.toFixed(1) + "k";
+    }
+
+    if (Math.round(thousand) < 1000) {
+        return thousand.toFixed(0) + "k";
+    }
+
+    const million = thousand / 1000.0;
+    return million.toFixed(1) + "M";
 }
 
 function githubStatusBadge_createSVG(svgPath) {
@@ -145,6 +155,7 @@ function githubStatusBadge_updateData() {
 
     [userName, repoName] = githubStatusBadge_getUserAndRepoNames();
     const repoLinkUrl = `https://github.com/${userName}/${repoName}`;
+    const showExactValues = document.getElementById("github-stats-badge").hasAttribute("data-exact");
 
     const opacityAfterLoad = .9;
     const isDevEnvironment = window.location.href.includes("localhost:") ||
@@ -166,12 +177,12 @@ function githubStatusBadge_updateData() {
         .then(data => {
             if (data) {
                 const stars = document.getElementById('github-stats-badge--stars');
-                stars.getElementsByTagName("span")[0].innerText = githubStatusBadge_formatNumber(data.stargazers_count)
+                stars.getElementsByTagName("span")[0].innerText = githubStatusBadge_formatNumber(data.stargazers_count, showExactValues)
                 stars.style.opacity = opacityAfterLoad;
                 stars.href = repoLinkUrl + "/stargazers";
 
                 const forks = document.getElementById('github-stats-badge--forks');
-                forks.getElementsByTagName("span")[0].innerText = githubStatusBadge_formatNumber(data.forks)
+                forks.getElementsByTagName("span")[0].innerText = githubStatusBadge_formatNumber(data.forks, showExactValues)
                 forks.style.opacity = opacityAfterLoad;
                 forks.href = repoLinkUrl + "/network/members";
             }
