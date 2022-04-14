@@ -33,6 +33,12 @@
             text-decoration: underline;
         }
 
+        code {
+            background-color: #EEE;
+            padding-left: .2em;
+            padding-right: .2em;
+        }
+
         .code-block {
             margin: auto;
             margin-top: 1em;
@@ -52,7 +58,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-1P8XP3J2CQ');
     </script>
 
@@ -87,6 +92,20 @@
         <div>
             Like it? <a href="https://github.com/swharden/repo-badge">Give us a star!</a> 🌟
         </div>
+
+        <details style="margin-top: 2em;">
+            <summary>Additional configuration</summary>
+            <div style="text-align: left; width: 90%; margin: auto;">
+                <h3>Show exact numbers</h3>
+                By default this badge displays rounded numbers like <code>6.9k</code>,
+                but you can add the <code>data-exact</code> attribute to show exact numbers:
+                <div class="code-block">
+                    &lt;a href=&quot;http://github.com/USER/REPO&quot;
+                    id=&quot;github-stats-badge&quot; data-exact&gt;GitHub&lt;/a&gt;
+                </div>
+            </div>
+        </details>
+
     </div>
 
     <footer style="margin: 5em; text-align: center; line-height: 3em;">

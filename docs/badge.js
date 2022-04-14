@@ -66,6 +66,19 @@ function githubStatusBadge_getUserAndRepoNames() {
     return [userName, repoName];
 }
 
+function githubStatusBadge_formatNumber(value) {
+    const badge = document.getElementById("github-stats-badge");
+
+    if (badge.hasAttribute("data-exact"))
+        return value.toLocaleString();
+
+    if (value < 1000)
+        return value.toLocaleString();
+
+    const thousand = Math.round(value / 100) / 10;
+    return thousand.toLocaleString() + "k";
+}
+
 function githubStatusBadge_createSVG(svgPath) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
@@ -153,12 +166,12 @@ function githubStatusBadge_updateData() {
         .then(data => {
             if (data) {
                 const stars = document.getElementById('github-stats-badge--stars');
-                stars.getElementsByTagName("span")[0].innerText = data.stargazers_count.toLocaleString();
+                stars.getElementsByTagName("span")[0].innerText = githubStatusBadge_formatNumber(data.stargazers_count)
                 stars.style.opacity = opacityAfterLoad;
                 stars.href = repoLinkUrl + "/stargazers";
 
                 const forks = document.getElementById('github-stats-badge--forks');
-                forks.getElementsByTagName("span")[0].innerText = data.forks.toLocaleString();
+                forks.getElementsByTagName("span")[0].innerText = githubStatusBadge_formatNumber(data.forks)
                 forks.style.opacity = opacityAfterLoad;
                 forks.href = repoLinkUrl + "/network/members";
             }
