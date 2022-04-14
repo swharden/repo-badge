@@ -1,13 +1,9 @@
 {
-  "name": "repo-badge",
-  "version": "1.1.0",
-  "description": "Display GitHub repository stats as a badge on any web page",
-  "main": "index.js",
-  "repository": "https://swharden.github.io/repo-badge",
-  "author": "Scott W Harden",
   "license": "MIT",
-  "private": false,
   "dependencies": {
     "jest": "^27.5.1"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
